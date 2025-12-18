@@ -2,3 +2,4 @@ target/
 *.txt
 context/
 node_modules/
+misc/
