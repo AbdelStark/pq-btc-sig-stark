@@ -132,52 +132,48 @@ export function KeyManagementPanel(): React.JSX.Element {
   })
 
   return (
-    <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-falcon-text">Key Management</h3>
+    <div className="space-y-5">
+      <h3 className="text-xl font-bold uppercase tracking-[0.03em]">Key Management</h3>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2.5">
         <button
           onClick={handleGenerate}
           disabled={isBusy}
-          className="rounded-lg bg-falcon-primary px-4 py-2 text-sm font-semibold text-falcon-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+          className="neo-button neo-button-primary px-4 py-2"
         >
           {isBusy ? "Generating..." : "Generate"}
         </button>
         <button
           onClick={handleImport}
           disabled={isBusy}
-          className="rounded-lg border border-falcon-muted/30 px-4 py-2 text-sm font-semibold text-falcon-text transition-opacity hover:bg-falcon-surface disabled:cursor-not-allowed disabled:opacity-50"
+          className="neo-button neo-button-neutral px-4 py-2"
         >
           Import
         </button>
         <button
           onClick={handleExport}
           disabled={!hasKeypair || !hasPacked}
-          className="rounded-lg border border-falcon-muted/30 px-4 py-2 text-sm font-semibold text-falcon-text transition-opacity hover:bg-falcon-surface disabled:cursor-not-allowed disabled:opacity-50"
+          className="neo-button neo-button-neutral px-4 py-2"
         >
           Export
         </button>
       </div>
 
       {keypairHex !== null && (
-        <div className="space-y-3">
-          <HexDisplay
-            label="Verifying Key (896-byte h polynomial)"
-            value={keypairHex}
-            truncate={{ head: 18, tail: 8 }}
-          />
+        <div className="neo-card-soft space-y-4 p-4">
+          <HexDisplay label="Verifying Key (896-byte h polynomial)" value={keypairHex} truncate={{ head: 18, tail: 8 }} />
 
           {nttCoeffs !== null && (
             <div>
               <button
                 onClick={() => setShowNtt(!showNtt)}
-                className="flex items-center gap-1 text-sm font-medium text-falcon-muted hover:text-falcon-text"
+                className="neo-link text-xs"
               >
                 <span className="text-xs">{showNtt ? "\u25BC" : "\u25B6"}</span>
                 NTT Coefficients ({nttCoeffs.length})
               </button>
               {showNtt && (
-                <div className="mt-1 max-h-32 overflow-y-auto rounded bg-falcon-bg p-2 font-mono text-xs text-falcon-accent">
+                <div className="neo-mono mt-2 max-h-32 overflow-y-auto border-2 border-black bg-white p-2 text-xs">
                   [{nttCoeffs.slice(0, 20).join(", ")}
                   {nttCoeffs.length > 20 && `, ... ${nttCoeffs.length - 20} more`}]
                 </div>
@@ -189,7 +185,7 @@ export function KeyManagementPanel(): React.JSX.Element {
             <div>
               <button
                 onClick={() => setShowPacked(!showPacked)}
-                className="flex items-center gap-1 text-sm font-medium text-falcon-muted hover:text-falcon-text"
+                className="neo-link text-xs"
               >
                 <span className="text-xs">{showPacked ? "\u25BC" : "\u25B6"}</span>
                 Packed Public Key ({packedSlots.length} felt252 slots)

@@ -133,19 +133,17 @@ export function PipelineVisualizer(): React.JSX.Element {
   const allComplete = steps.every((s) => s.status === "complete")
 
   return (
-    <section id="pipeline" className="px-6 py-20 lg:px-8">
-      <div className="mx-auto max-w-4xl">
+    <section id="pipeline" className="neo-section px-4 sm:px-6">
+      <div className="neo-shell">
         {/* Header */}
         <div className="flex flex-wrap items-baseline justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight text-falcon-text">
-              Verification Pipeline
-            </h2>
-            <p className="mt-2 text-falcon-muted">
+            <h2 className="neo-title text-[clamp(1.8rem,5vw,3.4rem)]">Verification Pipeline</h2>
+            <p className="neo-subtitle mt-0 max-w-2xl">
               Step through the 6-stage Falcon-512 on-chain verification
             </p>
           </div>
-          <span className="font-mono text-sm text-falcon-accent">
+          <span className="neo-chip neo-chip-blue neo-mono text-xs">
             ~{TOTAL_STEPS.toLocaleString()} total steps
           </span>
         </div>
@@ -157,7 +155,7 @@ export function PipelineVisualizer(): React.JSX.Element {
               onClick={handlePlay}
               disabled={allComplete}
               aria-label="Play pipeline animation"
-              className="rounded-lg bg-falcon-primary px-4 py-2 text-sm font-semibold text-falcon-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+              className="neo-button neo-button-primary px-4 py-2"
             >
               Play
             </button>
@@ -165,7 +163,7 @@ export function PipelineVisualizer(): React.JSX.Element {
             <button
               onClick={handlePause}
               aria-label="Pause pipeline animation"
-              className="rounded-lg bg-falcon-primary px-4 py-2 text-sm font-semibold text-falcon-text transition-opacity hover:opacity-90"
+              className="neo-button neo-button-primary px-4 py-2"
             >
               Pause
             </button>
@@ -174,14 +172,14 @@ export function PipelineVisualizer(): React.JSX.Element {
             onClick={handleStep}
             disabled={playing || allComplete}
             aria-label="Advance one pipeline step"
-            className="rounded-lg border border-falcon-muted/30 bg-falcon-surface px-4 py-2 text-sm font-medium text-falcon-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+            className="neo-button neo-button-neutral px-4 py-2"
           >
             Step
           </button>
           <button
             onClick={handleReset}
             aria-label="Reset pipeline to beginning"
-            className="rounded-lg border border-falcon-muted/30 bg-falcon-surface px-4 py-2 text-sm font-medium text-falcon-text transition-opacity hover:opacity-90"
+            className="neo-button neo-button-neutral px-4 py-2"
           >
             Reset
           </button>
@@ -203,46 +201,41 @@ export function PipelineVisualizer(): React.JSX.Element {
 function PipelineStepCard({ step }: { step: PipelineStep }): React.JSX.Element {
   const isActive = step.status === "active"
   const isComplete = step.status === "complete"
+  const statusClass = isActive
+    ? "neo-step-active"
+    : isComplete
+      ? "neo-step-complete"
+      : "neo-step-pending"
 
   return (
-    <div
-      className={`rounded-xl border p-5 transition-all ${
-        isActive
-          ? "border-falcon-primary/50 bg-falcon-primary/10 ring-2 ring-falcon-primary/30"
-          : isComplete
-            ? "border-falcon-success/30 bg-falcon-surface"
-            : "border-falcon-muted/20 bg-falcon-surface"
-      }`}
-    >
+    <div className={`neo-card p-5 ${statusClass}`}>
       <div className="flex items-center gap-2">
         <span className="text-base">
           {isComplete ? (
-            <span className="text-falcon-success">&#10003;</span>
+            <span className="font-black">&#10003;</span>
           ) : isActive ? (
-            <span className="inline-block h-2.5 w-2.5 animate-pulse rounded-full bg-falcon-primary" />
+            <span className="inline-block h-2.5 w-2.5 animate-pulse bg-black" />
           ) : (
-            <span className="inline-block h-2.5 w-2.5 rounded-full bg-falcon-muted/40" />
+            <span className="inline-block h-2.5 w-2.5 bg-black/40" />
           )}
         </span>
-        <h3 className="font-mono text-sm font-semibold text-falcon-text">
-          {step.name}
-        </h3>
-        <span className="ml-auto font-mono text-xs text-falcon-muted">
+        <h3 className="neo-mono text-sm font-semibold uppercase">{step.name}</h3>
+        <span className="neo-mono ml-auto text-xs">
           ~{step.stepCount.toLocaleString()}
         </span>
       </div>
 
-      <p className="mt-2 text-xs text-falcon-muted">{step.description}</p>
+      <p className="mt-2 text-xs leading-relaxed">{step.description}</p>
 
       {isActive && (
-        <div className="mt-3 space-y-1 border-t border-falcon-muted/20 pt-3">
+        <div className="mt-3 space-y-1 border-t-2 border-black pt-3">
           <div className="text-xs">
-            <span className="font-medium text-falcon-muted">In: </span>
-            <span className="font-mono text-falcon-text">{step.input}</span>
+            <span className="font-semibold uppercase tracking-[0.05em]">In: </span>
+            <span className="neo-mono">{step.input}</span>
           </div>
           <div className="text-xs">
-            <span className="font-medium text-falcon-muted">Out: </span>
-            <span className="font-mono text-falcon-text">{step.output}</span>
+            <span className="font-semibold uppercase tracking-[0.05em]">Out: </span>
+            <span className="neo-mono">{step.output}</span>
           </div>
         </div>
       )}

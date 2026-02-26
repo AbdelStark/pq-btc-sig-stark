@@ -37,10 +37,8 @@ export function HexDisplay(props: HexDisplayProps): React.JSX.Element {
   if (typeof value === "string") {
     return (
       <div>
-        <span className="block text-sm font-medium text-falcon-muted">
-          {label}
-        </span>
-        <code className="mt-1 block break-all font-mono text-sm text-falcon-accent">
+        {label.length > 0 && <span className="neo-label">{label}</span>}
+        <code className="neo-mono mt-1 block break-all text-xs leading-relaxed">
           {display(value)}
         </code>
       </div>
@@ -55,9 +53,7 @@ export function HexDisplay(props: HexDisplayProps): React.JSX.Element {
 
   return (
     <div>
-      <span className="block text-sm font-medium text-falcon-muted">
-        {label}
-      </span>
+      {label.length > 0 && <span className="neo-label">{label}</span>}
       <div className="mt-1 space-y-0.5">
         {shown.map((v) => {
           const nextCount = (keyCounts.get(v) ?? 0) + 1
@@ -66,14 +62,14 @@ export function HexDisplay(props: HexDisplayProps): React.JSX.Element {
           return (
             <code
               key={stableKey}
-              className="block break-all font-mono text-sm text-falcon-accent"
+              className="neo-mono block break-all text-xs leading-relaxed"
             >
               {display(v)}
             </code>
           )
         })}
         {overflow > 0 && (
-          <span className="text-xs text-falcon-muted">
+          <span className="text-xs font-semibold uppercase tracking-[0.06em]">
             ... {overflow} more
           </span>
         )}

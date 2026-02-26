@@ -15,14 +15,12 @@ const PipelineVisualizerDynamic = dynamic(
   {
     ssr: false,
     loading: () => (
-      <section id="pipeline" className="px-6 py-20 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold tracking-tight">
-            Verification Pipeline
-          </h2>
+      <section id="pipeline" className="neo-section px-4 sm:px-6">
+        <div className="neo-shell">
+          <h2 className="neo-title text-[clamp(1.8rem,5vw,3.4rem)]">Verification Pipeline</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 6 }, (_, i) => (
-              <div key={i} className="h-32 rounded-xl bg-falcon-surface animate-pulse" />
+              <div key={i} className="neo-card h-32 animate-pulse" />
             ))}
           </div>
         </div>

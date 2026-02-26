@@ -42,28 +42,25 @@ export function NavHeader(): React.JSX.Element {
   )
 
   return (
-    <header className="sticky top-0 z-40 border-b border-falcon-muted/20 bg-falcon-bg/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 px-3 pt-3">
       <nav
         aria-label="Main navigation"
-        className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3"
+        className="neo-shell neo-card flex flex-wrap items-center gap-4 px-4 py-4 sm:px-6"
       >
-        <a href="#hero" className="text-sm font-bold text-falcon-accent">
+        <a href="#hero" className="neo-chip neo-chip-pink">
           Falcon-512
         </a>
-        <ul className="flex items-center gap-6">
+        <ul className="order-3 flex w-full flex-wrap items-center gap-3 sm:order-2 sm:w-auto sm:gap-4">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm text-falcon-muted transition-colors hover:text-falcon-text"
-              >
+              <a href={link.href} className="neo-link text-xs">
                 {link.label}
               </a>
             </li>
           ))}
         </ul>
         <div
-          className="flex items-center rounded-full border border-falcon-muted/30 p-0.5"
+          className="order-2 ml-auto flex items-center gap-2 sm:order-3"
           role="group"
           aria-label="Network selection"
         >
@@ -76,8 +73,8 @@ export function NavHeader(): React.JSX.Element {
                 aria-pressed={isActive}
                 className={
                   isActive
-                    ? "rounded-full bg-falcon-accent px-3 py-1 text-xs font-semibold text-falcon-text transition-all"
-                    : "rounded-full px-3 py-1 text-xs text-falcon-muted transition-all hover:text-falcon-text"
+                    ? "neo-button neo-button-secondary px-3 py-1.5 text-xs"
+                    : "neo-button neo-button-neutral px-3 py-1.5 text-xs"
                 }
               >
                 {NETWORKS[id].name}

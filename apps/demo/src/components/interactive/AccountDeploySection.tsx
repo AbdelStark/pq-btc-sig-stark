@@ -7,10 +7,10 @@ const AccountDeployFlowDynamic = dynamic(
   {
     ssr: false,
     loading: () => (
-      <section id="deploy" className="px-6 py-20 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold tracking-tight text-falcon-text">Account Deploy Flow</h2>
-          <div className="mt-8 h-64 animate-pulse rounded-xl bg-falcon-surface" />
+      <section id="deploy" className="neo-section px-4 sm:px-6">
+        <div className="neo-shell">
+          <h2 className="neo-title text-[clamp(1.8rem,5vw,3.4rem)]">Account Deploy Flow</h2>
+          <div className="neo-card mt-8 h-64 animate-pulse" />
         </div>
       </section>
     ),

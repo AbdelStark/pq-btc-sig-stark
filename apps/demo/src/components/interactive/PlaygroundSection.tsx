@@ -16,12 +16,10 @@ const VerificationPlaygroundDynamic = dynamic(
   {
     ssr: false,
     loading: () => (
-      <section id="verify" className="px-6 py-20 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold tracking-tight">
-            Verification Playground
-          </h2>
-          <div className="mt-8 h-48 rounded-xl bg-falcon-surface animate-pulse" />
+      <section id="verify" className="neo-section px-4 sm:px-6">
+        <div className="neo-shell">
+          <h2 className="neo-title text-[clamp(1.8rem,5vw,3.4rem)]">Verification Playground</h2>
+          <div className="neo-card mt-8 h-48 animate-pulse" />
         </div>
       </section>
     ),

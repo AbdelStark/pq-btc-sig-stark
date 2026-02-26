@@ -9,7 +9,7 @@ import { AccountDeploySection } from "@/components/interactive/AccountDeploySect
 
 export default function Home(): React.JSX.Element {
   return (
-    <main className="min-h-screen">
+    <main className="neo-page min-h-screen">
       <NavHeader />
       <Hero />
       <WhyPostQuantum />

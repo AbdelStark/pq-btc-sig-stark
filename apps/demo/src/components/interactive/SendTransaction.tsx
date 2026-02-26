@@ -71,15 +71,15 @@ export function SendTransaction({
   }, [keypair, deployedAddress, recipient, amount, deployRuntime, falconRuntime])
 
   return (
-    <div className="mt-6 rounded-xl border border-falcon-muted/20 bg-falcon-surface p-5">
-      <h3 className="font-semibold text-falcon-text">Test Your Falcon Account</h3>
-      <p className="mt-1 text-sm text-falcon-muted">
+    <div className="neo-card-soft mt-6 p-5">
+      <h3 className="text-xl font-bold uppercase tracking-[0.03em]">Test Your Falcon Account</h3>
+      <p className="mt-1 text-sm">
         Send STRK using your post-quantum account.
       </p>
 
       <div className="mt-4 space-y-3">
         <div>
-          <label htmlFor="tx-recipient" className="block text-sm font-medium text-falcon-text">
+          <label htmlFor="tx-recipient" className="neo-label">
             Recipient
           </label>
           <input
@@ -87,12 +87,12 @@ export function SendTransaction({
             type="text"
             value={recipient}
             onChange={(e) => setRecipient(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-falcon-muted/30 bg-falcon-bg px-4 py-2 font-mono text-sm text-falcon-text focus:outline-none focus:ring-2 focus:ring-falcon-primary"
+            className="neo-input mt-1"
           />
         </div>
 
         <div>
-          <label htmlFor="tx-amount" className="block text-sm font-medium text-falcon-text">
+          <label htmlFor="tx-amount" className="neo-label">
             Amount (STRK)
           </label>
           <input
@@ -100,23 +100,23 @@ export function SendTransaction({
             type="text"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-falcon-muted/30 bg-falcon-bg px-4 py-2 font-mono text-sm text-falcon-text focus:outline-none focus:ring-2 focus:ring-falcon-primary"
+            className="neo-input mt-1"
           />
         </div>
 
         <button
           onClick={handleSend}
           disabled={sending || !Option.isSome(keypair)}
-          className="rounded-lg bg-falcon-accent px-6 py-2.5 text-sm font-semibold text-falcon-text hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+          className="neo-button neo-button-secondary px-6 py-2.5"
         >
           {sending ? "Sending..." : "Send STRK"}
         </button>
       </div>
 
       {result !== null && (
-        <div className="mt-4 rounded-xl border border-falcon-success/30 bg-falcon-success/10 p-4">
-          <p className="font-semibold text-falcon-success">Transaction Confirmed</p>
-          <p className="mt-1 break-all font-mono text-xs text-falcon-text">
+        <div className="neo-status neo-status-success mt-4">
+          <p className="font-semibold uppercase tracking-[0.04em]">Transaction Confirmed</p>
+          <p className="neo-mono mt-1 break-all text-xs">
             Tx: {result.txHash}
           </p>
           {networkConfig.explorerBaseUrl && (
@@ -124,7 +124,7 @@ export function SendTransaction({
               href={`${networkConfig.explorerBaseUrl}/tx/${result.txHash}`}
               target="_blank"
               rel="noreferrer noopener"
-              className="mt-2 inline-block text-sm text-falcon-accent hover:underline"
+              className="neo-link mt-2 text-xs"
             >
               View on Voyager
             </a>
@@ -133,8 +133,8 @@ export function SendTransaction({
       )}
 
       {error !== null && (
-        <div className="mt-4 rounded-xl border border-falcon-error/30 bg-falcon-error/10 p-4">
-          <p className="text-sm text-falcon-error">{error}</p>
+        <div className="neo-status neo-status-error mt-4">
+          <p className="text-sm">{error}</p>
         </div>
       )}
     </div>

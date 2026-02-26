@@ -6,42 +6,42 @@ const HERO_STATS = [
 
 export function Hero(): React.JSX.Element {
   return (
-    <section id="hero" aria-labelledby="hero-heading" className="px-6 py-24 sm:py-32 lg:px-8">
-      <div className="mx-auto max-w-5xl text-center">
-        <p className="text-sm font-semibold tracking-[0.2em] text-falcon-accent uppercase">
-          Falcon-512 Demo
-        </p>
-        <h1 id="hero-heading" className="mt-4 text-4xl font-bold tracking-tight text-falcon-text sm:text-6xl">
+    <section id="hero" aria-labelledby="hero-heading" className="neo-section px-4 sm:px-6">
+      <div className="neo-shell">
+        <div className="neo-card-accent neo-reveal px-6 py-8 sm:px-10 sm:py-11">
+          <p className="neo-eyebrow">Falcon-512 Demo</p>
+          <h1 id="hero-heading" className="neo-title max-w-4xl">
           Post-Quantum Signatures on Starknet
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-falcon-muted sm:text-lg">
-          Verify Falcon signatures with production Cairo metrics and account abstraction deployment
-          flows on Starknet Sepolia testnet.
-        </p>
+          </h1>
+          <p className="neo-subtitle max-w-3xl">
+            Verify Falcon signatures with production Cairo metrics and account abstraction deployment
+            flows on Starknet Sepolia testnet.
+          </p>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a
-            href="#verify"
-            className="inline-flex rounded-lg bg-falcon-primary px-6 py-3 text-sm font-semibold text-falcon-text transition-colors hover:bg-falcon-primary/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-falcon-accent focus-visible:ring-offset-2 focus-visible:ring-offset-falcon-bg"
-          >
-            Try Verification
-          </a>
-          <a
-            href="#deploy"
-            className="inline-flex rounded-lg border border-falcon-muted/40 bg-falcon-surface px-6 py-3 text-sm font-semibold text-falcon-text transition-colors hover:border-falcon-accent/70 hover:text-falcon-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-falcon-accent focus-visible:ring-offset-2 focus-visible:ring-offset-falcon-bg"
-          >
-            Deploy Account
-          </a>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#verify"
+              className="neo-button neo-button-neutral focus-visible:ring-2 focus-visible:ring-falcon-accent"
+            >
+              Try Verification
+            </a>
+            <a
+              href="#deploy"
+              className="neo-button neo-button-secondary focus-visible:ring-2 focus-visible:ring-falcon-accent"
+            >
+              Deploy Account
+            </a>
+          </div>
+
+          <dl className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {HERO_STATS.map((stat) => (
+              <div key={stat.label} className="neo-kpi bg-[var(--neo-white)]">
+                <dt className="neo-kpi-label">{stat.label}</dt>
+                <dd className="neo-kpi-value">{stat.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
-
-        <dl className="mx-auto mt-14 grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-3">
-          {HERO_STATS.map((stat) => (
-            <div key={stat.label} className="rounded-xl border border-falcon-muted/20 bg-falcon-surface px-5 py-4">
-              <dt className="text-sm text-falcon-muted">{stat.label}</dt>
-              <dd className="mt-2 text-3xl font-bold text-falcon-accent">{stat.value}</dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   )

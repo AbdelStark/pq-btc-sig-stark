@@ -1,8 +1,8 @@
 export function WhyPostQuantum() {
   return (
-    <section id="why-post-quantum" className="px-6 py-20 lg:px-8">
-      <div className="mx-auto max-w-4xl">
-        <h2 className="text-3xl font-bold tracking-tight">Why Post-Quantum?</h2>
+    <section id="why-post-quantum" className="neo-section px-4 sm:px-6">
+      <div className="neo-shell">
+        <h2 className="neo-title max-w-3xl text-[clamp(1.85rem,5.2vw,3.5rem)]">Why Post-Quantum?</h2>
         <div className="mt-8 grid gap-8 sm:grid-cols-2">
           <Card
             title="Quantum Threat"
@@ -28,9 +28,9 @@ export function WhyPostQuantum() {
 
 function Card({ title, description }: { title: string; description: string }) {
   return (
-    <div className="rounded-xl border border-falcon-muted/20 bg-falcon-surface p-6">
-      <h3 className="text-lg font-semibold text-falcon-text">{title}</h3>
-      <p className="mt-2 text-sm text-falcon-muted leading-relaxed">{description}</p>
+    <div className="neo-card rounded-xl bg-falcon-surface p-6">
+      <h3 className="text-xl font-bold uppercase tracking-[0.03em]">{title}</h3>
+      <p className="mt-3 text-sm leading-relaxed">{description}</p>
     </div>
   )
 }

@@ -281,18 +281,18 @@ export function AccountDeployFlow(): React.JSX.Element {
   }, [deployStep])
 
   return (
-    <section id="deploy" className="px-6 py-20 lg:px-8">
-      <div className="mx-auto max-w-4xl">
-        <h2 className="text-3xl font-bold tracking-tight text-falcon-text">Account Deploy Flow</h2>
-        <p className="mt-4 text-falcon-muted">
+    <section id="deploy" className="neo-section px-4 sm:px-6">
+      <div className="neo-shell">
+        <h2 className="neo-title text-[clamp(1.8rem,5vw,3.4rem)]">Account Deploy Flow</h2>
+        <p className="neo-subtitle">
           Deploy a Falcon-powered account to Starknet {networkConfig.name} with the same keypair used in
           the verification playground.
         </p>
         {networkConfig.classHash === "0x0" && (
-          <div className="mt-4 rounded-xl border border-yellow-500/30 bg-yellow-500/10 p-4">
-            <p className="text-sm text-yellow-400">
+          <div className="neo-status neo-status-warning mt-4">
+            <p className="text-sm">
               FalconAccount not declared on {networkConfig.name}.
-              Run: <code className="rounded bg-falcon-bg px-1 font-mono text-xs">./bin/declare.sh {networkConfig.id}</code>
+              Run: <code className="neo-code">./bin/declare.sh {networkConfig.id}</code>
             </p>
           </div>
         )}
@@ -331,15 +331,15 @@ export function AccountDeployFlow(): React.JSX.Element {
           >
             {deployStep.step === "awaiting-funds" && (
               <div className="mt-3 space-y-3">
-                <div className="rounded-lg bg-falcon-bg p-3">
-                  <p className="text-xs uppercase tracking-wide text-falcon-muted">Send STRK to</p>
+                <div className="neo-card-soft p-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.06em]">Send STRK to</p>
                   <div className="mt-1 flex items-center gap-2">
-                    <code className="flex-1 break-all font-mono text-sm text-falcon-accent">
+                    <code className="neo-mono flex-1 break-all text-sm">
                       {deployStep.address}
                     </code>
                     <button
                       onClick={() => navigator.clipboard.writeText(deployStep.address)}
-                      className="shrink-0 rounded border border-falcon-muted/30 px-2 py-1 text-xs text-falcon-muted hover:bg-falcon-surface"
+                      className="neo-icon-button shrink-0 px-2 py-1 text-xs"
                       title="Copy address"
                     >
                       Copy
@@ -351,19 +351,19 @@ export function AccountDeployFlow(): React.JSX.Element {
                     href="https://starknet-faucet.vercel.app/"
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="inline-block text-sm text-falcon-accent hover:underline"
+                    className="neo-link text-xs"
                   >
                     Get testnet STRK from the Starknet Faucet &rarr;
                   </a>
                 )}
                 {balance !== null && (
-                  <p className="text-sm text-falcon-muted">
+                  <p className="text-sm">
                     Current balance:{" "}
-                    <span className={balance > 0n ? "text-falcon-success" : "text-falcon-muted"}>
+                    <span className={balance > 0n ? "font-black" : "neo-mono"}>
                       {(Number(balance) / 1e18).toFixed(4)} STRK
                     </span>
                     {balance > 0n && (
-                      <span className="ml-2 text-falcon-success">— Ready to deploy!</span>
+                      <span className="ml-2 font-semibold">Ready to deploy.</span>
                     )}
                   </p>
                 )}
@@ -382,14 +382,14 @@ export function AccountDeployFlow(): React.JSX.Element {
         <div className="mt-8 space-y-3">
           {networkConfig.isDevnet && devnetAccounts.length > 0 ? (
             <div>
-              <label htmlFor="devnet-account" className="block text-sm font-medium text-falcon-text">
+              <label htmlFor="devnet-account" className="neo-label">
                 Deployer Account
               </label>
               <select
                 id="devnet-account"
                 value={privateKey}
                 onChange={(e) => setPrivateKey(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-falcon-muted/30 bg-falcon-surface px-4 py-2 font-mono text-sm text-falcon-text focus:outline-none focus:ring-2 focus:ring-falcon-primary"
+                className="neo-select mt-1"
               >
                 {devnetAccounts.map((acc, i) => (
                   <option key={acc.address} value={acc.private_key}>
@@ -400,7 +400,7 @@ export function AccountDeployFlow(): React.JSX.Element {
             </div>
           ) : (
             <div>
-              <label htmlFor="deploy-private-key" className="block text-sm font-medium text-falcon-text">
+              <label htmlFor="deploy-private-key" className="neo-label">
                 Deployer Private Key
               </label>
               <input
@@ -410,7 +410,7 @@ export function AccountDeployFlow(): React.JSX.Element {
                 value={privateKey}
                 onChange={(event) => setPrivateKey(event.target.value)}
                 placeholder="0x..."
-                className="w-full rounded-lg border border-falcon-muted/30 bg-falcon-surface px-4 py-2 font-mono text-sm text-falcon-text placeholder-falcon-muted focus:outline-none focus:ring-2 focus:ring-falcon-primary"
+                className="neo-input"
               />
             </div>
           )}
@@ -421,10 +421,10 @@ export function AccountDeployFlow(): React.JSX.Element {
               <button
                 onClick={handlePrepare}
                 disabled={!classHashValid}
-                className={`rounded-lg px-6 py-2.5 text-sm font-semibold ${
+                className={`neo-button px-6 py-2.5 ${
                   classHashValid
-                    ? "bg-falcon-primary text-falcon-text hover:opacity-90"
-                    : "cursor-not-allowed bg-falcon-muted/20 text-falcon-muted"
+                    ? "neo-button-primary"
+                    : "neo-button-neutral"
                 }`}
               >
                 Prepare Deploy
@@ -435,7 +435,7 @@ export function AccountDeployFlow(): React.JSX.Element {
           {deployStep.step === "awaiting-funds" && (
             <button
               onClick={handleDeploy}
-              className="rounded-lg bg-falcon-accent px-6 py-2.5 text-sm font-semibold text-falcon-text hover:opacity-90"
+              className="neo-button neo-button-secondary px-6 py-2.5"
             >
               Deploy Account
             </button>
@@ -447,19 +447,19 @@ export function AccountDeployFlow(): React.JSX.Element {
             <div
               role="status"
               aria-live="polite"
-              className="mt-6 rounded-xl border border-falcon-success/30 bg-falcon-success/10 p-5"
+              className="neo-status neo-status-success mt-6"
             >
-              <h3 className="font-semibold text-falcon-success">Account Deployed</h3>
-              <p className="mt-2 break-all font-mono text-xs text-falcon-text">
+              <h3 className="font-semibold uppercase tracking-[0.04em]">Account Deployed</h3>
+              <p className="neo-mono mt-2 break-all text-xs">
                 Address: {deployStep.address}
               </p>
-              <p className="mt-1 break-all font-mono text-xs text-falcon-text">Tx: {deployStep.txHash}</p>
+              <p className="neo-mono mt-1 break-all text-xs">Tx: {deployStep.txHash}</p>
               {networkConfig.explorerBaseUrl && (
                 <a
                   href={`${networkConfig.explorerBaseUrl}/tx/${deployStep.txHash}`}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="mt-3 inline-block text-sm text-falcon-accent hover:underline"
+                  className="neo-link mt-3 text-xs"
                 >
                   View on Voyager
                 </a>
@@ -477,12 +477,12 @@ export function AccountDeployFlow(): React.JSX.Element {
           <div
             role="alert"
             aria-live="polite"
-            className="mt-6 rounded-xl border border-falcon-error/30 bg-falcon-error/10 p-5"
+            className="neo-status neo-status-error mt-6"
           >
-            <p className="text-sm text-falcon-error">{deployStep.message}</p>
+            <p className="text-sm">{deployStep.message}</p>
             <button
               onClick={handleReset}
-              className="mt-3 rounded-lg border border-falcon-muted/30 px-3 py-1 text-xs text-falcon-muted hover:bg-falcon-surface"
+              className="neo-button neo-button-neutral mt-3 px-3 py-1 text-xs"
             >
               Try Again
             </button>
@@ -510,27 +510,18 @@ function DeployStepIndicator({
   complete,
   children,
 }: DeployStepIndicatorProps): React.JSX.Element {
-  const containerClass = active
-    ? "border-falcon-primary ring-2 ring-falcon-primary/20"
-    : complete
-      ? "border-falcon-success/40"
-      : "border-falcon-muted/20"
-
-  const badgeClass = complete
-    ? "bg-falcon-success/20 text-falcon-success"
-    : active
-      ? "bg-falcon-primary/20 text-falcon-primary"
-      : "bg-falcon-muted/10 text-falcon-muted"
+  const containerClass = active ? "neo-step-active" : complete ? "neo-step-complete" : "neo-step-pending"
+  const badgeClass = complete ? "neo-badge-complete" : active ? "neo-badge-active" : "neo-badge-pending"
 
   return (
-    <div className={`rounded-xl border bg-falcon-surface p-4 transition-all ${containerClass}`}>
+    <div className={`neo-card p-4 ${containerClass}`}>
       <div className="flex items-center gap-3">
-        <span className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${badgeClass}`}>
+        <span className={`flex h-8 w-8 items-center justify-center border-2 border-black text-sm font-black ${badgeClass}`}>
           {complete ? "✓" : number}
         </span>
         <div>
-          <h3 className="font-semibold text-falcon-text">{title}</h3>
-          <p className="text-sm text-falcon-muted">{description}</p>
+          <h3 className="font-semibold uppercase tracking-[0.04em]">{title}</h3>
+          <p className="text-sm">{description}</p>
         </div>
       </div>
       {children}

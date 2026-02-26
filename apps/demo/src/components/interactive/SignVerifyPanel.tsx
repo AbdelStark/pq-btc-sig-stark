@@ -118,14 +118,11 @@ export function SignVerifyPanel(): React.JSX.Element {
   })
 
   return (
-    <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-falcon-text">Sign & Verify</h3>
+    <div className="space-y-5">
+      <h3 className="text-xl font-bold uppercase tracking-[0.03em]">Sign & Verify</h3>
 
       <div>
-        <label
-          htmlFor="message-input"
-          className="block text-sm font-medium text-falcon-text"
-        >
+        <label htmlFor="message-input" className="neo-label">
           Message
         </label>
         <input
@@ -135,7 +132,7 @@ export function SignVerifyPanel(): React.JSX.Element {
           onChange={(e) => setMessage(e.target.value)}
           disabled={isBusy}
           placeholder="Enter a message to sign..."
-          className="mt-1 w-full rounded-lg border border-falcon-muted/30 bg-falcon-surface px-4 py-2 font-mono text-sm text-falcon-text placeholder-falcon-muted focus:outline-none focus:ring-2 focus:ring-falcon-primary disabled:cursor-not-allowed disabled:opacity-50"
+          className="neo-input mt-1 disabled:cursor-not-allowed disabled:opacity-50"
         />
       </div>
 
@@ -143,7 +140,7 @@ export function SignVerifyPanel(): React.JSX.Element {
         onClick={handleSignAndVerify}
         aria-label="Sign and verify message"
         disabled={!canSign}
-        className="rounded-lg bg-falcon-accent px-6 py-2.5 text-sm font-semibold text-falcon-text transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-falcon-accent disabled:cursor-not-allowed disabled:opacity-50"
+        className="neo-button neo-button-secondary px-6 py-2.5 focus-visible:ring-2 focus-visible:ring-falcon-accent"
       >
         {step.step === "signing" || step.step === "packing" || step.step === "verifying"
           ? "Running..."
@@ -151,7 +148,7 @@ export function SignVerifyPanel(): React.JSX.Element {
       </button>
 
       {signatureHex !== null && step.step === "complete" && (
-        <div className="space-y-3">
+        <div className="neo-card-soft space-y-3 p-4">
           <HexDisplay
             label={`Signature (${Option.match(signature, { onNone: () => 0, onSome: (s) => s.signature.length })} bytes)`}
             value={signatureHex}
@@ -171,35 +168,31 @@ export function SignVerifyPanel(): React.JSX.Element {
         <div
           role="status"
           aria-live="polite"
-          className={`rounded-xl border p-4 ${
-            step.valid
-              ? "border-falcon-success/30 bg-falcon-success/10"
-              : "border-falcon-error/30 bg-falcon-error/10"
-          }`}
+          className={`neo-status ${step.valid ? "neo-status-success" : "neo-status-error"}`}
         >
           <div className="flex items-center gap-3">
-            <span className={`text-xl font-bold ${step.valid ? "text-falcon-success" : "text-falcon-error"}`}>
+            <span className="text-xl font-black">
               {step.valid ? "\u2713" : "\u2717"}
             </span>
-            <span className="font-semibold text-falcon-text">
+            <span className="font-semibold uppercase tracking-[0.03em]">
               {step.valid ? "Signature valid" : "Signature invalid"}
             </span>
-            <span className="ml-auto text-sm text-falcon-muted">{step.durationMs}ms</span>
+            <span className="neo-mono ml-auto text-sm">{step.durationMs}ms</span>
           </div>
         </div>
       )}
 
       {step.step === "error" && (
-        <div role="alert" aria-live="polite" className="rounded-xl border border-falcon-error/30 bg-falcon-error/10 p-4">
+        <div role="alert" aria-live="polite" className="neo-status neo-status-error">
           <div className="flex items-start gap-3">
-            <span className="text-xl font-bold text-falcon-error">{"\u2717"}</span>
+            <span className="text-xl font-black">{"\u2717"}</span>
             <div className="flex-1">
-              <p className="font-semibold text-falcon-error">Error</p>
-              <p className="mt-1 break-all text-sm text-falcon-muted">{step.message}</p>
+              <p className="font-semibold uppercase tracking-[0.04em]">Error</p>
+              <p className="mt-1 break-all text-sm">{step.message}</p>
             </div>
             <button
               onClick={() => setStep({ step: "idle" })}
-              className="ml-auto rounded-lg border border-falcon-muted/30 px-3 py-1 text-xs text-falcon-muted hover:bg-falcon-surface"
+              className="neo-button neo-button-neutral ml-auto px-3 py-1 text-xs"
             >
               Try Again
             </button>
