@@ -28,7 +28,7 @@ export function WhyPostQuantum() {
 
 function Card({ title, description }: { title: string; description: string }) {
   return (
-    <div className="neo-card rounded-xl bg-falcon-surface p-6">
+    <div className="neo-card rounded-xl p-6">
       <h3 className="text-xl font-bold uppercase tracking-[0.03em]">{title}</h3>
       <p className="mt-3 text-sm leading-relaxed">{description}</p>
     </div>

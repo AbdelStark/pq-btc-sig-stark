@@ -214,9 +214,9 @@ function PipelineStepCard({ step }: { step: PipelineStep }): React.JSX.Element {
           {isComplete ? (
             <span className="font-black">&#10003;</span>
           ) : isActive ? (
-            <span className="inline-block h-2.5 w-2.5 animate-pulse bg-black" />
+            <span className="inline-block h-2.5 w-2.5 animate-pulse rounded-full bg-[var(--neo-focus)]" />
           ) : (
-            <span className="inline-block h-2.5 w-2.5 bg-black/40" />
+            <span className="inline-block h-2.5 w-2.5 rounded-full bg-[var(--neo-local-muted)]/70" />
           )}
         </span>
         <h3 className="neo-mono text-sm font-semibold uppercase">{step.name}</h3>
@@ -228,7 +228,7 @@ function PipelineStepCard({ step }: { step: PipelineStep }): React.JSX.Element {
       <p className="mt-2 text-xs leading-relaxed">{step.description}</p>
 
       {isActive && (
-        <div className="mt-3 space-y-1 border-t-2 border-black pt-3">
+        <div className="mt-3 space-y-1 border-t border-[var(--neo-divider)] pt-3">
           <div className="text-xs">
             <span className="font-semibold uppercase tracking-[0.05em]">In: </span>
             <span className="neo-mono">{step.input}</span>

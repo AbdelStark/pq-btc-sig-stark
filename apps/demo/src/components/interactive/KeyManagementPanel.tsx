@@ -173,7 +173,7 @@ export function KeyManagementPanel(): React.JSX.Element {
                 NTT Coefficients ({nttCoeffs.length})
               </button>
               {showNtt && (
-                <div className="neo-mono mt-2 max-h-32 overflow-y-auto border-2 border-black bg-white p-2 text-xs">
+                <div className="neo-mono mt-2 max-h-32 overflow-y-auto rounded-xl border border-[var(--neo-border)] bg-[var(--neo-input-surface)] p-2 text-xs">
                   [{nttCoeffs.slice(0, 20).join(", ")}
                   {nttCoeffs.length > 20 && `, ... ${nttCoeffs.length - 20} more`}]
                 </div>

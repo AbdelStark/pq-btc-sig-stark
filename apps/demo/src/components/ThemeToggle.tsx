@@ -47,7 +47,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="neo-icon-button fixed top-4 right-4 z-50 flex h-10 w-10 items-center justify-center bg-[var(--neo-yellow)] text-base leading-none"
+      className="neo-icon-button fixed right-4 top-4 z-50 flex h-10 w-10 items-center justify-center text-base leading-none"
       aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
       data-testid="theme-toggle"
       data-theme={theme}

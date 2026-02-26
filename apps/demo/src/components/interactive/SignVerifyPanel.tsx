@@ -132,7 +132,7 @@ export function SignVerifyPanel(): React.JSX.Element {
           onChange={(e) => setMessage(e.target.value)}
           disabled={isBusy}
           placeholder="Enter a message to sign..."
-          className="neo-input mt-1 disabled:cursor-not-allowed disabled:opacity-50"
+          className="neo-input mt-1"
         />
       </div>
 

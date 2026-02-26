@@ -35,7 +35,7 @@ export function Hero(): React.JSX.Element {
 
           <dl className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {HERO_STATS.map((stat) => (
-              <div key={stat.label} className="neo-kpi bg-[var(--neo-white)]">
+              <div key={stat.label} className="neo-kpi">
                 <dt className="neo-kpi-label">{stat.label}</dt>
                 <dd className="neo-kpi-value">{stat.value}</dd>
               </div>

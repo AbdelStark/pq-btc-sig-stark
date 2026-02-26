@@ -1,6 +1,6 @@
 export function Footer(): React.JSX.Element {
   return (
-    <footer className="border-t border-black px-4 pb-12 pt-4 sm:px-6">
+    <footer className="px-4 pb-12 pt-4 sm:px-6">
       <div className="neo-shell neo-card flex flex-col items-center justify-between gap-4 px-5 py-5 text-sm sm:flex-row">
         <p className="font-semibold uppercase tracking-[0.04em]">Built for the Falcon-512 Starknet demo.</p>
         <nav aria-label="Footer links" className="flex items-center gap-4">

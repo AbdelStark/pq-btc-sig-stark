@@ -516,7 +516,7 @@ function DeployStepIndicator({
   return (
     <div className={`neo-card p-4 ${containerClass}`}>
       <div className="flex items-center gap-3">
-        <span className={`flex h-8 w-8 items-center justify-center border-2 border-black text-sm font-black ${badgeClass}`}>
+        <span className={`flex h-8 w-8 items-center justify-center rounded-full border text-sm font-black ${badgeClass}`}>
           {complete ? "✓" : number}
         </span>
         <div>
